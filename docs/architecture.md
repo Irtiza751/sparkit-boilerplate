@@ -23,6 +23,7 @@ Welcome to **Sparkit Boilerplate** — a modern, opinionated React starter built
 
 ## Folder Structure
 
+```
 src/
 ├── assets/ # Static assets
 ├── classes/ # Business logic & reusable classes
@@ -47,6 +48,7 @@ src/
 ├── utils/ # Utility functions
 ├── App.tsx
 └── main.tsx
+```
 
 ---
 
