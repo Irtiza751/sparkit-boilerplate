@@ -24,30 +24,67 @@ Welcome to **Sparkit Boilerplate** — a modern, opinionated React starter built
 ## Folder Structure
 
 ```
-src/
-├── assets/ # Static assets
-├── classes/ # Business logic & reusable classes
-├── cli/ # Custom CLI for generating files
-├── components/ # Shared UI components
-├── config/ # App-wide config (query, theme, SEO, axios)
-├── hooks/ # Custom React hooks
-├── i18n/ # i18n setup and translation files
-├── interfaces/ # Global TypeScript interfaces
-├── layouts/ # Page layouts (MainLayout, AuthLayout)
-├── modules/ # Domain-based modules (auth, cart, etc.)
-│ ├── components/ # Module-specific UI
-│ ├── services.ts # API logic
-│ ├── store.ts # Zustand store
-│ └── types.ts # Module-specific types
-├── pages/ # App-level routes (used by router)
-├── providers/ # Context providers (i18n, query, helmet)
-├── router/ # TanStack Router routes & config
-├── services/ # Global service layer (API)
-├── stores/ # App-level Zustand stores
-├── types/ # Global enums & types
-├── utils/ # Utility functions
-├── App.tsx
-└── main.tsx
+sparkit-boilerplate/
+├── docs/
+│   └── architecture.md           # Boilerplate and architecture documentation
+│
+├── public/
+│   └── favicon.svg                # Public assets
+│
+├── scripts/
+│   └── cli/
+│       ├── templates/
+│       │   └── module/             # EJS templates for CLI-generated modules
+│       └── index.ts                # CLI entry file
+│
+├── src/
+│   ├── assets/
+│   │   ├── images/                 # Static images (e.g., logos, illustrations)
+│   │   └── svg/                    # SVG files
+│   │
+│   ├── layouts/
+│   │   └── MainLayout.tsx          # Main app layout
+│   │
+│   ├── modules/                    # Application modules (features)
+│   │   └── example/
+│   │       ├── components/         # Module-specific components
+│   │       ├── hooks/              # Module-specific hooks
+│   │       ├── services/           # API service layer
+│   │       ├── types/              # Types/interfaces for the module
+│   │       └── index.tsx           # Module entry point
+│   │
+│   ├── routes/
+│   │   └── AppRoutes.tsx           # TanStack Router configuration
+│   │
+│   ├── shared/
+│   │   ├── components/             # Global reusable components
+│   │   ├── hooks/                  # Global hooks
+│   │   ├── lib/                    # Libraries (e.g., Axios instance)
+│   │   ├── utils/                  # Utility functions
+│   │   └── constants/              # App-wide constants
+│   │
+│   ├── store/
+│   │   ├── modules/
+│   │   │   └── example.store.ts    # Zustand store per module
+│   │   ├── useAppStore.ts          # Global Zustand store (theme, settings, etc.)
+│   │   └── index.ts                # Export all stores
+│   │
+│   ├── types/
+│   │   └── global.d.ts             # Global TypeScript types
+│   │
+│   ├── App.tsx                     # Main App component
+│   ├── main.tsx                    # ReactDOM render, QueryClientProvider, RouterProvider, etc.
+│   └── vite-env.d.ts                # Vite's TypeScript environment types
+│
+├── .eslintrc.js                    # ESLint configuration
+├── .prettierrc                      # Prettier configuration
+├── tailwind.config.ts              # TailwindCSS config
+├── postcss.config.ts               # PostCSS config
+├── tsconfig.json                   # TypeScript config
+├── vite.config.ts                  # Vite configuration
+├── package.json
+├── README.md
+└── yarn.lock
 ```
 
 ---
