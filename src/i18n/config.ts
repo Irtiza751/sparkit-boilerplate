@@ -3,9 +3,11 @@ import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 import enTranslation from './locales/en/translation.json'
+import urTranslation from './locales/ur/translation.json'
 
 export const resources = {
   en: { translation: enTranslation },
+  ur: { translation: urTranslation },
 } as const
 
 i18n

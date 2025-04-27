@@ -10,19 +10,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen container mx-auto pt-5">
       <Helmet>
         <title>Sparkit Boilerplate</title>
       </Helmet>
       <div>
         <h1 className="text-3xl font-bold">{t('welcome')}</h1>
         <p className="mb-2">{t('description')}</p>
-        <button
-          className="py-2 px-3 bg-stone-800 rounded text-white"
-          onClick={() => changeLanguage('fr')}
+        <select
+          name="lang"
+          id="lang"
+          onChange={(e) => changeLanguage(e.target.value)}
+          className="p-2 border rounded"
         >
-          Switch to French
-        </button>
+          <option value="en">English</option>
+          <option value="ur">Urdu</option>
+        </select>
       </div>
     </div>
   )
