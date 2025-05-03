@@ -32,10 +32,10 @@ yargs(hideBin(process.argv))
         return
       }
       const fileName = fixNameCase(name, type)
-      const templatePath = `templates/${fileName}.ejs`
+      const templatePath = `templates/${type}.ejs`
       const outputPath = `${templateMap[type]}/${fileName}.ts${type === 'component' ? 'x' : ''}`
 
-      await generateFile(templatePath, outputPath, { name }, dryRun || false)
+      await generateFile(templatePath, outputPath, { name: fileName }, dryRun || false)
     },
   ) // this line 38
   .demandCommand()
