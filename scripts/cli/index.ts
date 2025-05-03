@@ -1,6 +1,8 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { generateFile } from './utils/generateFile'
+import { templateMap } from './utils/templateMap'
+import { fixNameCase } from './utils/fiixNameCase'
 
 yargs(hideBin(process.argv))
   .command(
@@ -29,15 +31,9 @@ yargs(hideBin(process.argv))
         console.error('Please provide both type and name')
         return
       }
-
-      const templateMap: Record<string, string> = {
-        component: 'src/shared/components',
-        class: 'src/shared/lib/classes',
-        interface: 'src/types',
-      }
-
-      const templatePath = `templates/${type}.ejs`
-      const outputPath = `${templateMap[type]}/${name}.ts${type === 'component' ? 'x' : ''}`
+      const fileName = fixNameCase(name, type)
+      const templatePath = `templates/${fileName}.ejs`
+      const outputPath = `${templateMap[type]}/${fileName}.ts${type === 'component' ? 'x' : ''}`
 
       await generateFile(templatePath, outputPath, { name }, dryRun || false)
     },
