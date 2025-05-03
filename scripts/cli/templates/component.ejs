@@ -1,9 +1,12 @@
-interface <%= name %>Props {}
+interface <%= name %>Props {
+  propName: string;
+}
 
-export function <%= name %> ({}: <%= name %>Props) {
+export function <%= name %> ({ propName }: <%= name %>Props) {
   return (
     <div>
       <h2><%= name %> component</h2>
+      <p>{propName}</p>
     </div>
   );
 };

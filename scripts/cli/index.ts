@@ -35,7 +35,7 @@ yargs(hideBin(process.argv))
       const templatePath = `templates/${type}.ejs`
       const outputPath = `${templateMap[type]}/${fileName}.ts${type === 'component' ? 'x' : ''}`
 
-      await generateFile(templatePath, outputPath, { name: fileName }, dryRun || false)
+      await generateFile(templatePath, outputPath, { name: fileName }, type, dryRun || false)
     },
   ) // this line 38
   .demandCommand()

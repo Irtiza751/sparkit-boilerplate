@@ -3,6 +3,7 @@ import ejs from 'ejs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import chalk from 'chalk'
+import { templateMap } from './templateMap'
 
 // Handle __dirname for ESM
 const __filename = fileURLToPath(import.meta.url)
@@ -12,6 +13,7 @@ export async function generateFile(
   templatePath: string,
   outputPath: string,
   data: unknown,
+  type: keyof typeof templateMap,
   dryRun: boolean,
 ) {
   const fullTemplatePath = path.resolve(__dirname, '..', templatePath)
@@ -28,4 +30,6 @@ export async function generateFile(
   }
 
   fs.writeFileSync(fullOutputPath, content, 'utf-8')
+  console.log(chalk.green(`SUCCESSFULLY GENERATED`))
+  console.log(chalk.green(`File generated: ${fullOutputPath}`))
 }
