@@ -1,3 +1,4 @@
+import path from 'path'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { generateFile } from './utils/generateFile'
@@ -6,7 +7,7 @@ import { fixNameCase } from './utils/fiixNameCase'
 
 yargs(hideBin(process.argv))
   .command(
-    'g [type] [name]',
+    'g [type] [target]',
     'Generate a new component, interface, or class',
     (yargs) => {
       return yargs
@@ -14,30 +15,39 @@ yargs(hideBin(process.argv))
           describe: 'Type to generate (component | interface | class)',
           type: 'string',
         })
-        .positional('name', {
-          describe: 'Name of the item',
+        .positional('target', {
+          describe: 'Path or name (e.g., modules/foo or just Foo)',
           type: 'string',
         })
         .option('dry-run', {
-          alias: 'dr',
           type: 'boolean',
+          description: 'Print output instead of writing files',
           default: false,
-          describe: 'Preview the output without creating the file(s)',
         })
     },
     async (argv) => {
-      const { type, name, dryRun } = argv
-      if (!type || !name) {
-        console.error('Please provide both type and name')
+      const { type, target, dryRun } = argv
+      if (!type || !target) {
+        console.error('Please provide both type and target')
         return
       }
-      const fileName = fixNameCase(name, type)
-      const templatePath = `templates/${type}.ejs`
-      const outputPath = `${templateMap[type]}/${fileName}.ts${type === 'component' ? 'x' : ''}`
 
-      await generateFile(templatePath, outputPath, { name: fileName }, type, dryRun || false)
+      const fullPath = path.normalize(target)
+      const parsed = path.parse(fullPath)
+
+      const rawName = parsed.name
+      const dirPath = parsed.dir
+
+      const fixedName = fixNameCase(rawName, type)
+      const templatePath = `templates/${type}.ejs`
+      const ext = type === 'component' ? '.tsx' : '.ts'
+
+      const baseDir = dirPath ? `src/${dirPath}` : templateMap[type]
+      const outputPath = path.join(baseDir, `${fixedName}${ext}`)
+
+      await generateFile(templatePath, outputPath, { name: fixedName }, type, dryRun)
     },
-  ) // this line 38
+  )
   .demandCommand()
   .help()
   .parse()

@@ -30,6 +30,6 @@ export async function generateFile(
   }
 
   fs.writeFileSync(fullOutputPath, content, 'utf-8')
-  console.log(chalk.green(`SUCCESSFULLY GENERATED`))
+  console.log(chalk.green(`${type} generated successfull`.toUpperCase()))
   console.log(chalk.green(`File generated: ${fullOutputPath}`))
 }
