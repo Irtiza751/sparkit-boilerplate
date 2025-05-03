@@ -10,8 +10,8 @@ export function Home() {
         <title>Sparkit Boilerplate</title>
       </Helmet>
       <div className="pt-6">
-        <h1 className="text-5xl font-bold">{t('welcome')}</h1>
-        <p className="text-xl mt-4">{t('description')}</p>
+        <h1 className="text-5xl font-bold">{t('home.welcome')}</h1>
+        <p className="text-xl mt-4">{t('home.description')}</p>
       </div>
     </div>
   )
