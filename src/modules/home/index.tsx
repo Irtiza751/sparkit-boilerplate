@@ -1,3 +1,4 @@
+import { Button } from '@/shared/components/ui/button'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
@@ -13,6 +14,7 @@ export function Home() {
         <h1 className="text-5xl font-bold">{t('home.welcome')}</h1>
         <p className="text-xl mt-4">{t('home.description')}</p>
       </div>
+      <Button>Hi there</Button>
     </div>
   )
 }
