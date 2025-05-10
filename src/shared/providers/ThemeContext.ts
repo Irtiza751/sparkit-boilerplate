@@ -6,6 +6,8 @@ export interface ThemeContextType {
   toggleTheme: () => void
   isDarkMode: boolean
   isLightMode: boolean
+  prefersDarkMode: boolean
+  prefersLightMode: boolean
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
