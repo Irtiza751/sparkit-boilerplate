@@ -7,6 +7,7 @@ import App from './App.tsx'
 import './i18n'
 // css file
 import './index.css'
+import { ThemeProvider } from './shared/providers/ThemeProvider.tsx'
 
 const queryClient = new QueryClient()
 
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </QueryClientProvider>
     </HelmetProvider>
   </StrictMode>,

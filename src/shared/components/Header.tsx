@@ -1,8 +1,11 @@
 import { Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { useTheme } from '@/shared/hooks/useTheme'
+import { Sun, Moon } from 'lucide-react'
 
 export function Header() {
   const { i18n } = useTranslation()
+  const theme = useTheme()
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang)
@@ -31,6 +34,9 @@ export function Header() {
                 <option value="en">English</option>
                 <option value="ur">Urdu</option>
               </select>
+            </li>
+            <li>
+              <button onClick={theme.toggleTheme}>{theme.isLightMode ? <Sun /> : <Moon />}</button>
             </li>
           </ul>
         </nav>
