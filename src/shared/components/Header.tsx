@@ -11,10 +11,10 @@ export function Header() {
     i18n.changeLanguage(lang)
   }
   return (
-    <header className="border-b border-stone-200">
+    <header className="border-b">
       <div className="flex justify-between items-center container mx-auto py-3">
         <h1 className="text-2xl font-semibold">
-          <span className="text-indigo-700">Sparkit</span> Boiler Plate
+          <span className="text-primary">Sparkit</span> Boiler Plate
         </h1>
         <nav>
           <ul className="flex gap-5 items-center">
