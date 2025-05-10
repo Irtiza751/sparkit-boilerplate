@@ -21,7 +21,6 @@ export function About() {
             </li>
           ))}
         </ul>
-
         <p className="mt-6 text-base">{t('about.inspired')}</p>
       </section>
     </div>
