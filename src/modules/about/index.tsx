@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
-export function About() {
+export default function About() {
   const { t } = useTranslation()
 
   const techItems = t('about.tech', { returnObjects: true }) as { [key: string]: string }
