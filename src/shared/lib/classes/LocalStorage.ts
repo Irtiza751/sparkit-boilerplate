@@ -1,13 +1,8 @@
 export class LocalStorage {
-  public static getItem<T = unknown>(key: string): T | null {
+  public static getItem<T = unknown>(key: string, option?: { parse?: boolean }): T | null {
     const item = localStorage.getItem(key)
     if (item) {
-      try {
-        return JSON.parse(item)
-      } catch (e) {
-        console.error('Error parsing JSON from localStorage', e)
-        return item as T
-      }
+      return option?.parse ? JSON.parse(item) : (item as T)
     }
     return null
   }
