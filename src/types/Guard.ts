@@ -1,3 +1,3 @@
 export interface Guard {
-  resolve(): boolean;
+  resolve(): boolean
 }
