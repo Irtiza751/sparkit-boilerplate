@@ -1,7 +1,15 @@
+import { rootRoute } from '@/routes/routeTree'
+import { createRoute } from '@tanstack/react-router'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
-export default function About() {
+export const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/about',
+  component: About
+})
+
+function About() {
   const { t } = useTranslation()
 
   const techItems = t('about.tech', { returnObjects: true }) as { [key: string]: string }

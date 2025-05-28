@@ -1,55 +1,16 @@
-import { createRootRoute, createRoute, Outlet } from '@tanstack/react-router'
-import Home from '@/modules/home'
-import About from '@/modules/about'
-import { RootLayout } from '../layouts/RootLayout'
-import Login from '@/modules/login'
-import { Header } from '@/shared/components/Header'
-import { LoginLayout } from '@/layouts/LoginLayout'
-import { authGuard } from '@/shared/lib/classes/AuthGuard'
-// 1. Create a root route
-const rootRoute = createRootRoute({
+import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { loginRoute } from '@/modules/login'
+import { homeRoute } from '@/modules/home'
+import { aboutRoute } from '@/modules/about'
+
+export const rootRoute = createRootRoute({
   component: () => (
-    <RootLayout>
+    <main className="min-h-screen">
       <Outlet />
-    </RootLayout>
+    </main>
   ),
 })
 
-// 2. Create child routes
-const homeRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/',
-  loader: authGuard.resolve,
-  component: () => (
-    <>
-      <Header />
-      <Home />
-    </>
-  ),
-})
-
-const aboutRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/about',
-  component: () => (
-    <>
-      <Header />
-      <About />
-    </>
-  ),
-})
-
-const loginRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/login',
-  component: () => (
-    <LoginLayout>
-      <Login />
-    </LoginLayout>
-  ),
-})
-
-// 3. Create a route tree
 const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, loginRoute])
 
 export { routeTree }

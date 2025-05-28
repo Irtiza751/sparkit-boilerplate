@@ -20,7 +20,19 @@ import {
 } from '@/shared/components/ui/form'
 import { LocalStorage } from '@/shared/lib/classes/LocalStorage'
 import { useState } from 'react'
-import { useRouter } from '@tanstack/react-router'
+import { createRoute, useRouter } from '@tanstack/react-router'
+import { rootRoute } from '@/routes/routeTree'
+import { LoginLayout } from '@/layouts/LoginLayout'
+
+export const loginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/login',
+  component: () => (
+    <LoginLayout>
+      <Login />
+    </LoginLayout>
+  ),
+})
 
 const loginSchema = z.object({
   email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
