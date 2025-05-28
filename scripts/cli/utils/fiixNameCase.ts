@@ -13,13 +13,9 @@ function toPascalCase(input: string): string {
 
 export function fixNameCase(name: string, type: FileType): string {
   switch (type) {
-    case 'component':
-      return toPascalCase(name)
-    case 'class':
-      return toPascalCase(name)
     case 'interface':
       return 'I' + toPascalCase(name)
     default:
-      throw new Error(`Unknown type: ${type}`)
+      return toPascalCase(name)
   }
 }

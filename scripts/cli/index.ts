@@ -8,11 +8,11 @@ import { fixNameCase } from './utils/fiixNameCase'
 yargs(hideBin(process.argv))
   .command(
     'g [type] [target]',
-    'Generate a new component, interface, or class',
+    'Generate a new component, interface, class, or hook',
     (yargs) => {
       return yargs
         .positional('type', {
-          describe: 'Type to generate (component | interface | class)',
+          describe: 'Type to generate (component | interface | class | hook)',
           type: 'string',
         })
         .positional('target', {

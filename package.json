@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cli": "tsx ./scripts/cli/index.ts"
+    "cli": "tsx ./scripts/cli/index.ts",
+    "format": "prettier . --write",
+    "check-format": "prettier . --check"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.6",
