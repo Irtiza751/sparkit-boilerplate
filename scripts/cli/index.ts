@@ -8,11 +8,11 @@ import { fixNameCase } from './utils/fiixNameCase'
 yargs(hideBin(process.argv))
   .command(
     'g [type] [target]',
-    'Generate a new component, interface, class, or hook',
+    'Generate a new component, interface, class, hook, or module',
     (yargs) => {
       return yargs
         .positional('type', {
-          describe: 'Type to generate (component | interface | class | hook)',
+          describe: 'Type to generate (component | interface | class | hook | module)',
           type: 'string',
         })
         .positional('target', {
@@ -37,15 +37,20 @@ yargs(hideBin(process.argv))
 
       const rawName = parsed.name
       const dirPath = parsed.dir
-
-      const fixedName = fixNameCase(rawName, type)
-      const templatePath = `templates/${type}.ejs`
-      const ext = type === 'component' ? '.tsx' : '.ts'
-
-      const baseDir = dirPath ? `src/${dirPath}` : templateMap[type]
-      const outputPath = path.join(baseDir, `${fixedName}${ext}`)
-
-      await generateFile(templatePath, outputPath, { name: fixedName }, type, dryRun)
+      if(type === 'module') {
+        /**
+         * @todo handle module generation logic
+        */
+      } else {
+        const fixedName = fixNameCase(rawName, type)
+        const templatePath = `templates/${type}.ejs`
+        const ext = type === 'component' || 'module' ? '.tsx' : '.ts'
+        
+        const baseDir = dirPath ? `src/${dirPath}` : templateMap[type]
+        const outputPath = path.join(baseDir, `${fixedName}${ext}`)
+        
+        await generateFile(templatePath, outputPath, { name: fixedName }, type, dryRun)
+      }
     },
   )
   .demandCommand()
