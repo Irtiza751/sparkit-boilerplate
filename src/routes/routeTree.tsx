@@ -1,10 +1,11 @@
-import { createRootRoute, createRoute, Outlet } from '@tanstack/react-router'
+import { createRootRoute, createRoute, Outlet, redirect } from '@tanstack/react-router'
 import Home from '@/modules/home'
 import About from '@/modules/about'
 import { RootLayout } from '../layouts/RootLayout'
 import Login from '@/modules/login'
 import { Header } from '@/shared/components/Header'
 import { LoginLayout } from '@/layouts/LoginLayout'
+import { LocalStorage } from '@/shared/lib/classes/LocalStorage'
 
 // 1. Create a root route
 const rootRoute = createRootRoute({
@@ -19,6 +20,13 @@ const rootRoute = createRootRoute({
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
+  loader: () => {
+    const auth = LocalStorage.getItem('auth');
+    console.log(auth);
+    if(!auth) {
+      throw redirect({to: '/login'});
+    }
+  },
   component: () => (
     <>
       <Header />

@@ -3,4 +3,5 @@ export const templateMap: Record<string, string> = {
   class: 'src/shared/lib/classes',
   interface: 'src/types',
   hook: 'src/shared/hooks',
+  module: 'src/modules',
 } as const
