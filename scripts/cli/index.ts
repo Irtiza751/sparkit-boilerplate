@@ -38,6 +38,7 @@ yargs(hideBin(process.argv))
       const rawName = parsed.name
       const dirPath = parsed.dir
 
+      
       const fixedName = fixNameCase(rawName, type)
       const templatePath = `templates/${type}.ejs`
       const ext = type === 'component' ? '.tsx' : '.ts'

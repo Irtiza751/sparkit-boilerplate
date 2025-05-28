@@ -15,6 +15,8 @@ export function fixNameCase(name: string, type: FileType): string {
   switch (type) {
     case 'interface':
       return 'I' + toPascalCase(name)
+    case 'hook':
+      return 'use' + toPascalCase(name)
     default:
       return toPascalCase(name)
   }
