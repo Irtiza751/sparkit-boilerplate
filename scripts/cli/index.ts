@@ -37,18 +37,18 @@ yargs(hideBin(process.argv))
 
       const rawName = parsed.name
       const dirPath = parsed.dir
-      if(type === 'module') {
+      if (type === 'module') {
         /**
          * @todo handle module generation logic
-        */
+         */
       } else {
         const fixedName = fixNameCase(rawName, type)
         const templatePath = `templates/${type}.ejs`
         const ext = type === 'component' || 'module' ? '.tsx' : '.ts'
-        
+
         const baseDir = dirPath ? `src/${dirPath}` : templateMap[type]
         const outputPath = path.join(baseDir, `${fixedName}${ext}`)
-        
+
         await generateFile(templatePath, outputPath, { name: fixedName }, type, dryRun)
       }
     },

@@ -1,6 +1,4 @@
-// import viteLogo from '/vite.svg'
-
-import { AppRoutes } from './routes/AppRoutes'
+import AppRoutes from './modules/routing.module'
 
 function App() {
   return <AppRoutes />
