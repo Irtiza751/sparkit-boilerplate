@@ -3,6 +3,7 @@ import Login from './login'
 import Home from './home'
 import HomeLayout from '@/layouts/home.layout'
 import AuthLayout from '@/layouts/auth.layout'
+import Protected from '@/shared/components/protected'
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Protected>
+            <Home />
+          </Protected>
+        ),
       },
     ],
   },
