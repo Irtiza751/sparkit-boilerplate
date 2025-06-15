@@ -1,13 +1,5 @@
-import { rootRoute } from '@/routes/routeTree'
-import { createRoute } from '@tanstack/react-router'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
-
-export const aboutRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/about',
-  component: About
-})
 
 function About() {
   const { t } = useTranslation()
@@ -34,3 +26,5 @@ function About() {
     </div>
   )
 }
+
+export default About;

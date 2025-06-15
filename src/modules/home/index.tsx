@@ -1,16 +1,6 @@
-import { rootRoute } from '@/routes/routeTree'
 import { Button } from '@/shared/components/ui/button'
-import { authGuard } from '@/shared/lib/classes/AuthGuard'
-import { createRoute } from '@tanstack/react-router'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
-
-export const homeRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/',
-  loader: authGuard.resolve,
-  component: Home
-})
 
 function Home() {
   const { t } = useTranslation()
@@ -28,3 +18,5 @@ function Home() {
     </div>
   )
 }
+
+export default Home;

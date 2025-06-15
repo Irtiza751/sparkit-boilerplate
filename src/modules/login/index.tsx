@@ -20,19 +20,6 @@ import {
 } from '@/shared/components/ui/form'
 import { LocalStorage } from '@/shared/lib/classes/LocalStorage'
 import { useState } from 'react'
-import { createRoute, useRouter } from '@tanstack/react-router'
-import { rootRoute } from '@/routes/routeTree'
-import { LoginLayout } from '@/layouts/LoginLayout'
-
-export const loginRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/login',
-  component: () => (
-    <LoginLayout>
-      <Login />
-    </LoginLayout>
-  ),
-})
 
 const loginSchema = z.object({
   email: z.string({ required_error: 'Email is required' }).email('Invalid email address'),
@@ -48,7 +35,6 @@ const user = {
 
 export default function Login() {
   const [showCredsError, setShowCredsError] = useState(false)
-  const router = useRouter()
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -60,7 +46,7 @@ export default function Login() {
     setShowCredsError(false)
     if (creds.email === user.email && creds.password === user.password) {
       LocalStorage.setItem('auth', true)
-      router.navigate({ to: '/' })
+      // Redirect to home page or dashboard
     } else {
       setShowCredsError(true)
     }
